@@ -55,8 +55,15 @@
         <label>Upload Resume (PDF)</label>
         <input type="file" name="resume" required />
         <br /><br />
-        <label>Upload Job Description (TXT)</label>
-        <input type="file" name="job" required />
+        <label for="job_description">Job Description</label>
+
+        <textarea
+            name="job_description"
+            id="job_description"
+            rows="10"
+            placeholder="Paste the job description here..."
+            required>
+        </textarea>
 
         <button type="submit">Check Skills</button>
       </form>

@@ -47,16 +47,13 @@ def index():
     missing_skills = []
     if request.method == "POST":
         resume = request.files["resume"]
-        job_desc = request.files["job"]
+        job_description = request.form["job_description"]
 
         resume_path = os.path.join(UPLOAD_FOLDER, resume.filename)
-        job_path = os.path.join(UPLOAD_FOLDER, job_desc.filename)
-
         resume.save(resume_path)
-        job_desc.save(job_path)
-
+        
         resume_text = clean_text(extract_text_from_pdf(resume_path))
-        job_text = clean_text(extract_text_from_txt(job_path))
+        job_text = clean_text(job_description.lower())
 
         missing_skills = find_missing_skills(resume_text, job_text)
 
