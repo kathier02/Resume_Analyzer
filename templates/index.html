@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Resume Skill Checker</title>
+    <style>
+      body {
+        font-family: Arial;
+        background: #f4f6f8;
+      }
+      h2 {
+        color: #5e3b96;
+      }
+      label {
+        font-weight: bolder;
+      }
+      .container {
+        width: 400px;
+        margin: 60px auto;
+        padding: 20px;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 0 10px #ccc;
+      }
+      h2 {
+        text-align: center;
+      }
+      input,
+      button {
+        width: 100%;
+        margin-top: 10px;
+      }
+      button {
+        padding: 8px;
+        background: #5e3b96;
+        color: white;
+        width: 100px;
+        margin-left: 140px;
+        border: none;
+        padding: 10px;
+        border-radius: 5px;
+      }
+      ul {
+        margin-top: 15px;
+      }
+      p {
+        font-size: x-large;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Resume Skill Checker</h2>
+      <br /><br />
+      <form method="POST" enctype="multipart/form-data">
+        <label>Upload Resume (PDF)</label>
+        <input type="file" name="resume" required />
+        <br /><br />
+        <label>Upload Job Description (TXT)</label>
+        <input type="file" name="job" required />
+
+        <button type="submit">Check Skills</button>
+      </form>
+
+      {% if missing_skills %}
+      <h3>Missing Skills</h3>
+      <ul>
+        {% for skill in missing_skills %}
+        <li>{{ skill }}</li>
+        {% endfor %}
+      </ul>
+      {% elif missing_skills is not none %}
+      <p>Your resume matches the job description!</p>
+      {% endif %}
+    </div>
+  </body>
+</html>
